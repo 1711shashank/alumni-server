@@ -3,11 +3,14 @@ const { db } = require('../models/mongoDB');
 module.exports.getData = async function getData(req, res) {
     try {
 
-        let data = await db.find();
+        let profileData = await db.find();
+
+        // console.log(data);
 
         res.status(200).json({
-            data: data
+            profileData: profileData
         });
+
     } catch (err) {
         console.log(err);
     }
@@ -16,6 +19,8 @@ module.exports.addData = async function addData(req, res) {
     try {
 
         const { name, email, passoutYear, mobileNumber, currentCompany, linkedInUrl } = req.body;
+
+        console.log(req.body);
 
         const newUserData = new db({
             name: name,
@@ -33,6 +38,6 @@ module.exports.addData = async function addData(req, res) {
         });
 
     } catch (err) {
-        console.log(err);
+        console.log("hihihihi",err);
     }
 }
